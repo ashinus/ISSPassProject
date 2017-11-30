@@ -1,6 +1,6 @@
 package com.example.isspass.service;
 
-import com.example.isspass.beans.ISSPassModelResponse;
+import com.example.isspass.bean.ISSPassModelResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

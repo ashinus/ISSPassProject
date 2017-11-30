@@ -2,7 +2,7 @@ package com.example.isspass.presenter;
 
 import com.example.isspass.Listener.ISSPassListener;
 import com.example.isspass.model.Request;
-import com.example.isspass.beans.ISSPassModelResponse;
+import com.example.isspass.bean.ISSPassModelResponse;
 import com.example.isspass.service.ISSPassServiceClass;
 import com.example.isspass.ui.view.ISSPassUIInterface;
 import com.example.isspass.interactor.ISSPassServiceInteractor;
