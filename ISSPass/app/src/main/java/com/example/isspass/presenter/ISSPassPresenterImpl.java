@@ -50,9 +50,11 @@ public class ISSPassPresenterImpl implements ISSPassPresenter {
             mISSPassServiceInteractor.getDatafromService(request.getLatitude(),request.getLongitude(), new ISSPassListener() {
                     @Override
                     public void onSuccess(Object success) {
+                        com.example.isspass.model.Response[] resp=null;
                         Response<ISSPassModelResponse> serverResponse  = (Response<ISSPassModelResponse> ) success;
                         // Response received from the server
-                        com.example.isspass.model.Response[] resp = serverResponse.body().getResponse();
+                        if(serverResponse!=null && serverResponse.body()!=null)
+                        resp = serverResponse.body().getResponse();
                         //Pass the response to the adapter and display it to the list
                         if(resp!=null)
                         mISSPassUIInterface.ShowTSSPassList(resp);
