@@ -1,4 +1,4 @@
-package com.example.isspass.Utility;
+package com.example.isspass.utils;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -6,7 +6,6 @@ import android.net.NetworkInfo;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 /**
  * Created by Ashutosh Singh on 11/30/2017.

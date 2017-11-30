@@ -1,4 +1,4 @@
-package com.example.isspass.Listener;
+package com.example.isspass.listeners;
 
 import com.example.isspass.constants.ISSPassPermissionConstants;
 
