@@ -1,6 +1,6 @@
 package com.example.isspass.interactor;
 
-import com.example.isspass.Listener.ISSPassListener;
+import com.example.isspass.listeners.ISSPassListener;
 
 import org.json.JSONException;
 

@@ -1,6 +1,6 @@
 package com.example.isspass.service;
 
-import com.example.isspass.Listener.ISSPassListener;
+import com.example.isspass.listeners.ISSPassListener;
 import com.example.isspass.interactor.ISSPassServiceInteractor;
 import com.example.isspass.bean.ISSPassModelResponse;
 import com.example.isspass.network.ApiClientProvider;

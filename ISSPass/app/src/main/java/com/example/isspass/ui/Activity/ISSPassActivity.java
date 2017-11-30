@@ -2,10 +2,9 @@ package com.example.isspass.ui.Activity;
 
 import android.os.Bundle;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.isspass.R;
-import com.example.isspass.Listener.ISSPassPermissionListener;
+import com.example.isspass.listeners.ISSPassPermissionListener;
 import com.example.isspass.constants.ISSPassPermissionConstants;
 import com.example.isspass.model.Request;
 import com.example.isspass.model.Response;
@@ -15,7 +14,7 @@ import com.example.isspass.ui.Adapter.ISSPassListAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import com.example.isspass.Utility.Util;
+
 /**
  * Created by Ashutosh Singh on 11/30/2017.
  * Launcher Activity to show the list

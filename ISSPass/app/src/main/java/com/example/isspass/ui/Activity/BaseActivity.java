@@ -17,7 +17,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 
-import com.example.isspass.Listener.ISSPassPermissionListener;
+import com.example.isspass.listeners.ISSPassPermissionListener;
 import com.example.isspass.R;
 import com.example.isspass.constants.ISSPassPermissionConstants;
 import com.example.isspass.model.Response;

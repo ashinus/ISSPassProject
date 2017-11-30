@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.isspass.R;
-import com.example.isspass.Utility.Util;
+import com.example.isspass.utils.Util;
 import com.example.isspass.model.Response;
 
 import java.util.ArrayList;
