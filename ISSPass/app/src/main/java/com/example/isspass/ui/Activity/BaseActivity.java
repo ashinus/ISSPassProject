@@ -176,7 +176,11 @@ public class BaseActivity extends AppCompatActivity implements ISSPassUIInterfac
         // Showing Alert Message
         alertDialog.show();
     }
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
     @Override
     public void ShowTSSPassList(Response[] resp) {
 

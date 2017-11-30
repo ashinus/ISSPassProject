@@ -2,7 +2,7 @@ package com.example.isspass.service;
 
 import com.example.isspass.Listener.ISSPassListener;
 import com.example.isspass.interactor.ISSPassServiceInteractor;
-import com.example.isspass.Beans.ISSPassModelResponse;
+import com.example.isspass.beans.ISSPassModelResponse;
 import com.example.isspass.network.ApiClientProvider;
 
 import retrofit2.Call;

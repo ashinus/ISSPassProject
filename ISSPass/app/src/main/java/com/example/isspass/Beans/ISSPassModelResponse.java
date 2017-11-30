@@ -1,4 +1,4 @@
-package com.example.isspass.Beans;
+package com.example.isspass.beans;
 
 import com.example.isspass.model.Request;
 import com.example.isspass.model.Response;

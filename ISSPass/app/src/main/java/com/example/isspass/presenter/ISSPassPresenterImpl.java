@@ -1,12 +1,8 @@
 package com.example.isspass.presenter;
 
-import android.content.Context;
-import android.widget.Toast;
-
 import com.example.isspass.Listener.ISSPassListener;
-import com.example.isspass.R;
 import com.example.isspass.model.Request;
-import com.example.isspass.Beans.ISSPassModelResponse;
+import com.example.isspass.beans.ISSPassModelResponse;
 import com.example.isspass.service.ISSPassServiceClass;
 import com.example.isspass.ui.view.ISSPassUIInterface;
 import com.example.isspass.interactor.ISSPassServiceInteractor;
