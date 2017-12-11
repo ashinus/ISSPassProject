@@ -5,7 +5,7 @@ package com.example.isspass.model;
  * the response pojo for the response object
  */
 
-public class Response {
+public class ISSPassResponse {
 
     String duration;
     String risetime;

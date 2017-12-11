@@ -12,7 +12,8 @@ import android.widget.Toast;
 
 import com.example.isspass.R;
 import com.example.isspass.constants.ISSPassConstants;
-import com.example.isspass.model.Request;
+import com.example.isspass.model.ISSPassRequest;
+
 
 /**
  * Created by Ashutosh Singh on 11/30/2017.
@@ -30,7 +31,7 @@ public class ISSPassLocationServiceClass implements LocationListener {
      * This method check the modes to get the Location Information. It checks if the location service is availbe with the provider
      * and returns the location object though which the ISSPass request is made
      */
-    public void  getLocationLatAndLongForRequest(Request request ) {
+    public void  getLocationLatAndLongForRequest(ISSPassRequest request ) {
 
         boolean isGPSEnabled = false;
         boolean isNetworkEnabled = false;
@@ -43,13 +44,9 @@ public class ISSPassLocationServiceClass implements LocationListener {
         // getting Network status
         isNetworkEnabled = locationManager
                 .isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-
-        if (isGPSEnabled) {
-            if (ContextCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-            }
-
-        } else if (isNetworkEnabled) {
+        //check for network permission
+        if (ContextCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            if (isNetworkEnabled) {
                 locationManager.requestLocationUpdates(
                         LocationManager.NETWORK_PROVIDER,
                         ISSPassConstants.MIN_TIME_BTW_UPDATES,
@@ -58,19 +55,17 @@ public class ISSPassLocationServiceClass implements LocationListener {
                 if (locationManager != null) {
                     location = locationManager
                             .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-
-
                 }
-        } else {
-                Toast.makeText(mContext, mContext.getResources().getString(R.string.no_location_provider), Toast.LENGTH_SHORT);
-                return;
+            } else if (isGPSEnabled) {
+                location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
             }
-
+        }
+        // set latitude and longitude  from location
         if(location!=null) {
             request.setLatitude("" + location.getLatitude());
             request.setLongitude("" + location.getLongitude());
         }else {
-            Toast.makeText(mContext, mContext.getResources().getString(R.string.no_location_available), Toast.LENGTH_SHORT);
+            Toast.makeText(mContext, mContext.getResources().getString(R.string.no_location_available), Toast.LENGTH_SHORT).show();
         }
     }
     @Override

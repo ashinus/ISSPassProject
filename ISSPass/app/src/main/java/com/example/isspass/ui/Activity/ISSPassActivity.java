@@ -1,16 +1,16 @@
-package com.example.isspass.ui.Activity;
+package com.example.isspass.ui.activity;
 
 import android.os.Bundle;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.isspass.R;
-import com.example.isspass.listeners.ISSPassPermissionListener;
 import com.example.isspass.constants.ISSPassPermissionConstants;
-import com.example.isspass.model.Request;
-import com.example.isspass.model.Response;
+import com.example.isspass.model.ISSPassRequest;
+import com.example.isspass.model.ISSPassResponse;
 import com.example.isspass.presenter.ISSPassPresenterImpl;
 import com.example.isspass.service.ISSPassLocationServiceClass;
-import com.example.isspass.ui.Adapter.ISSPassListAdapter;
+import com.example.isspass.ui.adapter.ISSPassListAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,7 +22,7 @@ import java.util.Arrays;
 
 public class ISSPassActivity extends BaseActivity {
 
-    private Request request;
+    private ISSPassRequest request;
     private ISSPassLocationServiceClass locationService;
     ListView  listview=null;
 
@@ -35,7 +35,7 @@ public class ISSPassActivity extends BaseActivity {
         //Create the Presenter for network calls
         ISSPassPresenterImpl.createPresenter(this);
         //Create new request for getting the server response
-        request = new Request();
+        request = new ISSPassRequest();
         // Get ListView object from XML
         listview = (ListView) findViewById(R.id.customList);
 
@@ -44,31 +44,12 @@ public class ISSPassActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
-        checkPermission(ISSPassPermissionConstants.Permissions.LOCATION, permissionListener);
-        if (mISSPassPresenter != null && request != null)
-            mISSPassPresenter.getISSPassData(request);
-
-
     }
-
-    ISSPassPermissionListener permissionListener = new ISSPassPermissionListener() {
-        @Override
-        public void onPermissionGranted(ISSPassPermissionConstants.Permissions permission) {
-            ISSPassLocationServiceClass locationService = new ISSPassLocationServiceClass(ISSPassActivity.this);
-            locationService.getLocationLatAndLongForRequest(request);
-        }
-
-        @Override
-        public void onPermissionDenied(ISSPassPermissionConstants.Permissions permission) {
-
-        }
-    };
     /**
      * Show the TSSPass List with the data fetched from the server
      */
     @Override
-    public void ShowTSSPassList(Response[] resp){
+    public void ShowTSSPassList(ISSPassResponse[] resp){
 
         ArrayList list = new ArrayList();
         list.addAll(Arrays.asList(resp));
@@ -77,5 +58,30 @@ public class ISSPassActivity extends BaseActivity {
 
     }
 
+    /* Handle permission denied case*/
+    @Override
+    public void onPermissionDenied(ISSPassPermissionConstants.Permissions permission) {
+        super.onPermissionDenied(permission);
+    }
+    /* Handle multiple permissions here*/
+    @Override
+    public void onPermissionGranted(ISSPassPermissionConstants.Permissions permission) {
 
+        switch(permission.getRequestCode()){
+
+            case ISSPassPermissionConstants.REQUEST_LOCATION: {
+                ISSPassLocationServiceClass locationService = new ISSPassLocationServiceClass(ISSPassActivity.this);
+                locationService.getLocationLatAndLongForRequest(request);
+
+                if (mISSPassPresenter != null && request != null)
+                    mISSPassPresenter.getISSPassData(request);
+            }
+            break;
+            default:
+                break;
+
+        }
+
+
+    }
 }

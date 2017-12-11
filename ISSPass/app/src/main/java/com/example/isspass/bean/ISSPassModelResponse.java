@@ -1,7 +1,7 @@
 package com.example.isspass.bean;
 
-import com.example.isspass.model.Request;
-import com.example.isspass.model.Response;
+import com.example.isspass.model.ISSPassRequest;
+import com.example.isspass.model.ISSPassResponse;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -17,9 +17,9 @@ public class ISSPassModelResponse implements Serializable {
     @SerializedName("message")
     private String message;
     @SerializedName("request")
-    private Request request;
+    private ISSPassRequest request;
     @SerializedName("response")
-    private Response[] response;
+    private ISSPassResponse[] response;
 
     public String getMessage() {
         return message;
@@ -29,19 +29,19 @@ public class ISSPassModelResponse implements Serializable {
         this.message = message;
     }
 
-    public Response [] getResponse() {
+    public ISSPassResponse [] getResponse() {
         return response;
     }
 
-    public void setResponse(Response [] response) {
+    public void setResponse(ISSPassResponse [] response) {
         this.response = response;
     }
 
-    public Request getRequest() {
+    public ISSPassRequest getRequest() {
         return request;
     }
 
-    public void setRequest(Request request) {
+    public void setRequest(ISSPassRequest request) {
         this.request = request;
     }
 

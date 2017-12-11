@@ -2,7 +2,8 @@ package com.example.isspass;
 
 import com.example.isspass.listeners.ISSPassListener;
 import com.example.isspass.interactor.ISSPassServiceInteractor;
-import com.example.isspass.model.Response;
+import com.example.isspass.model.ISSPassErrorModel;
+import com.example.isspass.model.ISSPassResponse;
 import com.example.isspass.presenter.ISSPassPresenter;
 import com.example.isspass.presenter.ISSPassPresenterImpl;
 import com.example.isspass.ui.view.ISSPassUIInterface;
@@ -14,7 +15,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Created by 582827 on 11/30/2017.
+ * Created by Ashutosh Singh on 11/30/2017.
  */
 
 public class ISSPassPresenterTest {
@@ -72,12 +73,17 @@ private class FakeISSPassUIInterface implements ISSPassUIInterface {
     }
 
     @Override
+    public void ShowError(ISSPassErrorModel error_model) {
+
+    }
+
+    @Override
     public void setPresenter(ISSPassPresenter isspassPresenter) {
 
     }
 
     @Override
-    public void ShowTSSPassList(Response[] resp) {
+    public void ShowTSSPassList(ISSPassResponse[] resp) {
 
     }
 }

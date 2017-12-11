@@ -5,7 +5,7 @@ package com.example.isspass.model;
  * The Request pojo for the response object
  */
 
-public class Request {
+public class ISSPassRequest {
 
     String latitude;
     String longitude;

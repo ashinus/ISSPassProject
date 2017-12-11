@@ -1,6 +1,9 @@
 package com.example.isspass.utils;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
@@ -34,6 +37,5 @@ public class Util {
         //should check null because in airplane mode it will be null
         return (netInfo != null && netInfo.isConnected());
     }
-
 
 }

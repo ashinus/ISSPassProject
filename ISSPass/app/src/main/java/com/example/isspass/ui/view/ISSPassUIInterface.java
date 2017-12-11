@@ -2,8 +2,11 @@ package com.example.isspass.ui.view;
 
 import android.content.Context;
 
-import com.example.isspass.model.Response;
+import com.example.isspass.model.ISSPassErrorModel;
+import com.example.isspass.model.ISSPassResponse;
 import com.example.isspass.presenter.ISSPassPresenter;
+
+import okhttp3.ResponseBody;
 
 
 /**
@@ -28,8 +31,13 @@ public interface ISSPassUIInterface {
     void hideSpinner();
 
     /**
+     * Show any error
+     */
+    void ShowError(ISSPassErrorModel error_model);
+
+    /**
      * Show the TSS Pas list received from the server
      */
-    void ShowTSSPassList(Response [] resp);
+    void ShowTSSPassList(ISSPassResponse[] resp);
 
 }

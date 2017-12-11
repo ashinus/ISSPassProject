@@ -1,4 +1,4 @@
-package com.example.isspass.ui.Adapter;
+package com.example.isspass.ui.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,8 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.isspass.R;
+import com.example.isspass.model.ISSPassResponse;
 import com.example.isspass.utils.Util;
-import com.example.isspass.model.Response;
 
 import java.util.ArrayList;
 
@@ -22,9 +22,9 @@ public class ISSPassListAdapter extends BaseAdapter {
 
     Context context;
     LayoutInflater inflater;
-    ArrayList<Response> mResponseList = new ArrayList();
+    ArrayList<ISSPassResponse> mResponseList = new ArrayList();
 
-    public ISSPassListAdapter(Context context, ArrayList<Response> responseList) {
+    public ISSPassListAdapter(Context context, ArrayList<ISSPassResponse> responseList) {
         this.context = context;
         inflater = LayoutInflater.from(this.context);
         mResponseList = responseList;

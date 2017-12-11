@@ -13,4 +13,6 @@
     <string name="fetch_data_error">Unable to fetch data, Please try again after some time</string>
     <string name="no_network_error">There is no internet connection available..</string>
     <string name="gps_disabled">GPS is not enabled. Do you want to go to settings menu?</string>
+    <string name="no_network">"There is no network. You need to have a working network connection to use the application"</string>
+
 </resources>

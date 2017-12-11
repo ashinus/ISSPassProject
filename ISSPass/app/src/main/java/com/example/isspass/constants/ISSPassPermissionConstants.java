@@ -13,7 +13,7 @@ public final class ISSPassPermissionConstants {
     }
 
     /**
-     * Id to identify a location permission request.
+     * List down all the permission you want to handle in the code. For ISSPass we just need one permission for location
      */
     public static final int REQUEST_LOCATION = 0;
 

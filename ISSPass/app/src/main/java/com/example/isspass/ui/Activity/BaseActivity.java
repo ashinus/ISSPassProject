@@ -1,5 +1,6 @@
-package com.example.isspass.ui.Activity;
+package com.example.isspass.ui.activity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -12,31 +13,36 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.provider.Settings;
+import android.support.annotation.BoolRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import com.example.isspass.listeners.ISSPassPermissionListener;
 import com.example.isspass.R;
 import com.example.isspass.constants.ISSPassPermissionConstants;
-import com.example.isspass.model.Response;
+import com.example.isspass.model.ISSPassErrorModel;
+import com.example.isspass.model.ISSPassResponse;
 import com.example.isspass.presenter.ISSPassPresenter;
 import com.example.isspass.ui.view.ISSPassUIInterface;
+import com.example.isspass.utils.Util;
+
+import okhttp3.ResponseBody;
 
 /**
  * Created by Ashutosh Singh on 11/30/2017.
  * Helper Activity which has the generic methods. All Activity should extend the base Activity
  */
 
-public class BaseActivity extends AppCompatActivity implements ISSPassUIInterface {
+public class BaseActivity extends AppCompatActivity implements ISSPassUIInterface,ISSPassPermissionListener{
 
     /* Listener to be set to give a call back to the corresponding Activity for callbacks */
     private ISSPassPermissionListener mPermissionListener;
     /* Type of permission that is being reg */
     private ISSPassPermissionConstants.Permissions mPermission;
     private static ProgressDialog progressBar;
-    Context mContext;
     public ISSPassPresenter mISSPassPresenter;
 
 
@@ -49,43 +55,33 @@ public class BaseActivity extends AppCompatActivity implements ISSPassUIInterfac
     @Override
     protected void onResume() {
         super.onResume();
+        /* check if internet connection is available)*/
+        Boolean bool = Util.isNetworkAvailable(this);
+        /* Show network unavailable message to the user*/
+        if(!bool) {
+            Toast.makeText(this,getResources().getText(R.string.no_network), Toast.LENGTH_LONG).show();
+            return;
+        }
 
-    }
+        checkPermission(ISSPassPermissionConstants.Permissions.LOCATION, this);
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
     }
 
     @Override
     public void showSpinner() {
 
-        if (mContext == null || (mContext instanceof Activity && ((Activity) mContext).isFinishing())) {
+        if (isFinishing()) {
             return;
         }
 
         if (null == progressBar) {
             progressBar = new ProgressDialog(this);
-            progressBar.setMessage(mContext.getResources().getString(R.string.spinner_text));
-            progressBar.setTitle(mContext.getResources().getString(R.string.spinner_title));
+            progressBar.setMessage(getResources().getString(R.string.spinner_text));
+            progressBar.setTitle(getResources().getString(R.string.spinner_title));
             progressBar.setCancelable(false);
             progressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            progressBar.show();
 
-            if (mContext instanceof Activity) {
-                if (!((Activity) mContext).isFinishing()) {
-                    progressBar.show();
-                }
-            }
         }
     }
 
@@ -182,7 +178,24 @@ public class BaseActivity extends AppCompatActivity implements ISSPassUIInterfac
         finish();
     }
     @Override
-    public void ShowTSSPassList(Response[] resp) {
+    public void ShowTSSPassList(ISSPassResponse[] resp) {
+
+    }
+
+    @Override
+    public void ShowError(ISSPassErrorModel erro_model) {
+        Toast.makeText(this,erro_model.getErrorMessage(),Toast.LENGTH_SHORT).show();
+
+    }
+
+    /* Handle permission denied case*/
+    @Override
+    public void onPermissionDenied(ISSPassPermissionConstants.Permissions permission) {
+        Toast.makeText(this,"You denied the "+permission.name()+"  permission",Toast.LENGTH_LONG).show();
+    }
+    /* Handle permission Accepted case*/
+    @Override
+    public void onPermissionGranted(ISSPassPermissionConstants.Permissions permission) {
 
     }
 }
