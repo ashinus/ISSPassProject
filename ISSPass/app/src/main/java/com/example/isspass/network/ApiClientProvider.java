@@ -33,6 +33,9 @@ public class ApiClientProvider {
         }
     }
 
+    void myNewFunction(){
+        return 0;
+    }
     /**
      * Method to get the Retrofit rest client object to make the HTTP Calls
      */
