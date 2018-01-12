@@ -100,4 +100,17 @@ private class FakeISSPassUIInterface implements ISSPassUIInterface {
             }
         }
     }
+    private class FakeISSPassServiceInteractor123 implements ISSPassServiceInteractor {
+        boolean isSuccess;
+
+        @Override
+        public void getDatafromService(String latitude, String longitude, ISSPassListener listener) throws JSONException {
+            if (isSuccess) {
+                listener.onSuccess(null);
+            } else {
+                listener.onError(null);
+            }
+        }
+    }
+
 }
